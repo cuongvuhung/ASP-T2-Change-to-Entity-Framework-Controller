@@ -15,10 +15,10 @@ namespace ASPT1
             app.MapGet("/", () => page.Content);
             //////////////////////////////////////////////////////////////////
             // GET /employee
-            app.MapGet("/{tblname}", (string tblname) => 
+            app.MapGet("/Employees", () => 
             {
                 DAL dal = new DAL();
-                string str = $"Select,{tblname}";
+                string str = $"Select,Employees";
                 List<string> list = dal.SQLQuery(str);
                 str = "";
                 foreach (string line in list) 
@@ -30,10 +30,10 @@ namespace ASPT1
 
             //////////////////////////////////////////////////////////////////
             // Get /{tblname}/{id}
-            app.MapGet("/{tblname}/{id}", (string tblname, string id) => 
+            app.MapGet("/Employees/{id}", (string id) => 
             {
                 DAL dal = new DAL();
-                string str = $"Select,{tblname},id,{id}";
+                string str = $"Select,Employees,id,{id}";
                 List<string> list = dal.SQLQuery(str);
                 str = "";
                 foreach (string line in list)
@@ -48,6 +48,7 @@ namespace ASPT1
             // POST /employee/{name}/{fullname}/{password}/{role}
             app.MapPost("/employees", (Employee emp) =>
             {
+                emp.Password = Utils.Hash(emp.Password);
                 string str = $"Insert,Employees,{emp.Name},{emp.Fullname},{emp.Password},{emp.Role}";
                 DAL dal = new DAL();
                 int result = dal.SQLExecute(str);
@@ -58,7 +59,8 @@ namespace ASPT1
             // PUT /employee/{id}/{name}/{fullname}/{password}/{role}
             app.MapPut("/employees", (Employee emp) =>
             {
-                string str = $"Update,Employees,{emp.Id},{emp.Name},{emp.Fullname},{emp.Password},{emp.Role}";
+                emp.Password = Utils.Hash(emp.Password);
+                string str = $"Update,Employees,{emp.Id},name,{emp.Name},fullname,{emp.Fullname},password,{emp.Password},role,{emp.Role}";
                 DAL dal = new DAL();
                 int result = dal.SQLExecute(str);
                 return $"{result} rows effected";                
