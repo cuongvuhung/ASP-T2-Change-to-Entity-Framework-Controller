@@ -5,20 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace ASPT1.Models
+namespace ASPT2.Models
 {
-    public class Config
+    public static class Config
     {
-        public string conStr;
-        public Config()
-        {
-            string dataSource = "Data Source = 10.36.0.36;";
-            string catalog = "Initial Catalog = Cuongvh-Achievements;";
-            string user = "User ID = cuongvt;";
-            string password = "Password = Abcd@12345";
-            conStr = dataSource + catalog + user + password;
 
-            /*
+        public static string dataSource = "Data Source = 10.36.0.36;";
+        public static string catalog = "Initial Catalog = Cuongvh-Achievements;";
+        public static string user = "User ID = cuongvt;";
+        public static string password = "Password = Abcd@12345;";
+        public static string conStr = dataSource + catalog + user + password + "TrustServerCertificate=True;";
+        /*public Config()
+        {
+            
+
+            *//*
             FileStream fileStream = new("config.cfg", FileMode.OpenOrCreate);
             StreamReader streamReader = new(fileStream);
             string dataSource = streamReader.ReadLine() + "";
@@ -26,7 +27,7 @@ namespace ASPT1.Models
             string user = streamReader.ReadLine() + "";
             string password = streamReader.ReadLine() + "";
             streamReader.Close();
-            */
-        }
+            *//*
+        }*/
     }
 }

@@ -1,16 +1,25 @@
-﻿namespace ASPT1.DTO
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ASPT2.DTO
 {
+    [Table("Employees")]
     public class Employee
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Fullname { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }    
+        public string Role { get; set; }
 
-        public Employee(int iD, string name, string fullname, string password, string role)
+        public Employee()
         {
-            Id = iD;
+        }
+
+        public Employee(int id, string name, string fullname, string password, string role)
+        {
+            Id = id;
             Name = name;
             Fullname = fullname;
             Password = password;

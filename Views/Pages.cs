@@ -1,4 +1,4 @@
-﻿namespace ASPT1.Views
+﻿namespace ASPT2.Views
 {
     public class Pages
     {        
